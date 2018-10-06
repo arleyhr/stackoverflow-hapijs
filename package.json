@@ -10,8 +10,8 @@
     "start": "node .",
     "test": "echo \"Error: no test specified\""
   },
-  "author": "",
-  "license": "ISC",
+  "author": "arleyhr",
+  "license": "MIT",
   "dependencies": {
     "dotenv": "^6.0.0",
     "handlebars": "^4.0.12",

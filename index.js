@@ -7,6 +7,8 @@ const vision = require('vision')
 const dotenv = require('dotenv')
 const path = require('path')
 
+const routes = require('./routes')
+
 dotenv.config()
 
 const server = Hapi.server({
@@ -34,38 +36,8 @@ async function init () {
       layoutPath: 'views'
     })
 
-    server.route({
-      method: 'GET',
-      path: '/',
-      handler: (req, h) => h.view('index', {
-        title: 'Home'
-      })
-    })
+    server.route(routes)
 
-    server.route({
-      method: 'GET',
-      path: '/register',
-      handler: (req, h) => h.view('register', {
-        title: 'Register'
-      })
-    })
-
-    server.route({
-      method: 'GET',
-      path: '/{param*}',
-      handler: {
-        directory: {
-          path: '.',
-          index: ['index.html']
-        }
-      }
-    })
-
-    server.route({
-      method: 'GET',
-      path: '/arleyhr',
-      handler: (req, h) => h.redirect('https://github.com/arleyhr')
-    })
     await server.start()
   } catch (e) {
     console.log(e)
