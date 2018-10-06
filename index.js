@@ -44,6 +44,14 @@ async function init () {
 
     server.route({
       method: 'GET',
+      path: '/register',
+      handler: (req, h) => h.view('register', {
+        title: 'Register'
+      })
+    })
+
+    server.route({
+      method: 'GET',
       path: '/{param*}',
       handler: {
         directory: {
