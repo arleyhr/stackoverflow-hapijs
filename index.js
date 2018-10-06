@@ -17,6 +17,12 @@ async function init () {
     handler: (req, h) => h.response('hello world!').code(200)
   })
 
+  server.route({
+    method: 'GET',
+    path: '/redirect',
+    handler: (req, h) => h.redirect('https://github.com/arleyhr')
+  })
+
   try {
     await server.start()
   } catch (e) {
