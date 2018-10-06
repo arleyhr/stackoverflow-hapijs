@@ -1,5 +1,7 @@
 'use strict'
 
+const Joi = require('joi')
+
 const site = require('./controllers/site')
 const user = require('./controllers/user')
 
@@ -17,6 +19,15 @@ module.exports = [
   {
     method: 'POST',
     path: '/create-user',
+    options: {
+      validate: {
+        payload: {
+          name: Joi.string().min(3).required(),
+          email: Joi.string().email().required(),
+          password: Joi.string().min(6).required()
+        }
+      }
+    },
     handler: user.createUser
   },
   {
