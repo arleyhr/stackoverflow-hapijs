@@ -10,11 +10,11 @@ const server = Hapi.server({
   host: 'localhost'
 })
 
-async function init() {
+async function init () {
   server.route({
     method: 'GET',
     path: '/',
-    handler: (req, h) => 'hello world!'
+    handler: (req, h) => h.response('hello world!').code(200)
   })
 
   try {
