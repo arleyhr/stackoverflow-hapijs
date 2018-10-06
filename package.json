@@ -14,7 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^6.0.0",
-    "hapi": "^17.6.0"
+    "hapi": "^17.6.0",
+    "inert": "^5.1.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.4",

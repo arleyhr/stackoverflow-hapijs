@@ -1,29 +1,47 @@
 'use strict'
 
 const Hapi = require('hapi')
+const inert = require('inert')
 const dotenv = require('dotenv')
+const path = require('path')
 
 dotenv.config()
 
 const server = Hapi.server({
   port: process.env.PORT || 3000,
-  host: 'localhost'
+  host: 'localhost',
+  routes: {
+    files: {
+      relativeTo: path.join(__dirname, 'public')
+    }
+  }
 })
 
 async function init () {
-  server.route({
-    method: 'GET',
-    path: '/',
-    handler: (req, h) => h.response('hello world!').code(200)
-  })
-
-  server.route({
-    method: 'GET',
-    path: '/redirect',
-    handler: (req, h) => h.redirect('https://github.com/arleyhr')
-  })
-
   try {
+    await server.register(inert)
+    server.route({
+      method: 'GET',
+      path: '/',
+      handler: (req, h) => h.file('index.html')
+    })
+
+    server.route({
+      method: 'GET',
+      path: '/{param*}',
+      handler: {
+        directory: {
+          path: '.',
+          index: ['index.html']
+        }
+      }
+    })
+
+    server.route({
+      method: 'GET',
+      path: '/arleyhr',
+      handler: (req, h) => h.redirect('https://github.com/arleyhr')
+    })
     await server.start()
   } catch (e) {
     console.log(e)
