@@ -6,6 +6,12 @@ function home (req, h) {
   })
 }
 
+function login (req, h) {
+  return h.view('login', {
+    title: 'Login'
+  })
+}
+
 function register (req, h) {
   return h.view('register', {
     title: 'Register'
@@ -14,5 +20,6 @@ function register (req, h) {
 
 module.exports = {
   home,
+  login,
   register
 }

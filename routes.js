@@ -17,6 +17,11 @@ module.exports = [
     handler: site.register
   },
   {
+    method: 'GET',
+    path: '/login',
+    handler: site.login
+  },
+  {
     method: 'POST',
     path: '/create-user',
     options: {
