@@ -23,6 +23,19 @@ module.exports = [
   },
   {
     method: 'POST',
+    path: '/verify-login',
+    options: {
+      validate: {
+        payload: {
+          email: Joi.string().email().required(),
+          password: Joi.string().required()
+        }
+      }
+    },
+    handler: user.login
+  },
+  {
+    method: 'POST',
     path: '/create-user',
     options: {
       validate: {

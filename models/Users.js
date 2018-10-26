@@ -8,12 +8,20 @@ class Users {
     this.collection = this.ref.child('users')
   }
 
-  async create ({ email, password, name }) {
+  create ({ email, password, name }) {
     return this.auth.createUser({
       email,
       password,
       displayName: name
     })
+  }
+
+  login ({ email, password }) {
+    console.log(Object.keys(this.auth))
+    return {
+      email,
+      password
+    }
   }
 }
 

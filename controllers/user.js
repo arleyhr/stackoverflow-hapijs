@@ -12,6 +12,12 @@ async function createUser (req, h) {
   }
 }
 
+async function login (req, h) {
+
+  return users.login(req.payload)
+}
+
 module.exports = {
-  createUser
+  createUser,
+  login
 }
